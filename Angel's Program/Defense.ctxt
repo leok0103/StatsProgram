@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Defense()
+comment1.params=n
+comment1.target=Defense(java.lang.String)
+comment10.params=b
+comment10.target=double\ SUM_D(java.util.ArrayList)
+comment11.params=b
+comment11.target=double\ AVG_D(java.util.ArrayList)
+comment2.params=n\ a
+comment2.target=Defense(java.lang.String,\ java.util.ArrayList)
+comment3.params=n
+comment3.target=void\ avgingout(int)
+comment4.params=
+comment4.target=void\ calcAVG()
+comment5.params=
+comment5.target=java.lang.String\ getList()
+comment6.params=
+comment6.target=java.lang.String\ getAvg()
+comment7.params=
+comment7.target=boolean\ haveCompleted()
+comment8.params=
+comment8.target=java.lang.String\ getName()
+comment9.params=
+comment9.target=java.lang.String\ calcStdDev()
+numComments=12

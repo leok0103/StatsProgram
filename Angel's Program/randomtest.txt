@@ -1,0 +1,203 @@
+Team Number : 6599
+Auton (2 digits) : 1
+	<for tens digit, refer to below>
+	Nothing happens 0
+	Reach Defense 1
+	Cross Defense 2
+	Scores Low Goal 3
+	Scores High Goal 4
+	<for ones digit, refer to below>
+	No Crossing 0
+	Portcullis 1
+	Cheval De Frise 2
+	Moat 3
+	Ramparts 4
+	Drawbridge 5
+	Sally Port 6
+	Rock Wall 7
+	Rough Terrain 8
+	Low Bar 9
+<Teleop>
+High Goals : 0
+Low Goals : 2
+Defenses Crossed - 
+	Portcullis : 1
+	Cheval de Frise : -1
+	Moat : -1
+	Ramparts : 0
+	Drawbridge : 0
+	Sally Port : -1
+	Rock Wall : -1
+	Rough Terrain : 0
+	Low Bar : 0
+Scale / Climb / None (choose 1) : 0
+----------
+Team Number : 4712
+Auton (2 digits) : 30
+	<for tens digit, refer to below>
+	Nothing happens 0
+	Reach Defense 1
+	Cross Defense 2
+	Scores Low Goal 3
+	Scores High Goal 4
+	<for ones digit, refer to below>
+	No Crossing 0
+	Portcullis 1
+	Cheval De Frise 2
+	Moat 3
+	Ramparts 4
+	Drawbridge 5
+	Sally Port 6
+	Rock Wall 7
+	Rough Terrain 8
+	Low Bar 9
+<Teleop>
+High Goals : 3
+Low Goals : 0
+Defenses Crossed - 
+	Portcullis : -1
+	Cheval de Frise : 0
+	Moat : -1
+	Ramparts : 1
+	DrawBridge : -1
+	Sally Port : 0
+	Rock Wall : 0
+	Rough Terrain : -1
+	Low Bar : 1
+Scale / Climb / None (choose 1) : 1
+----------
+Team Number : 2524
+Auton (2 digits) : 1
+	<for tens digit, refer to below>
+	Nothing happens 0
+	Reach Defense 1
+	Cross Defense 2
+	Scores Low Goal 3
+	Scores High Goal 4
+	<for ones digit, refer to below>
+	No Crossing 0
+	Portcullis 1
+	Cheval De Frise 2
+	Moat 3
+	Ramparts 4
+	Drawbridge 5
+	Sally Port 6
+	Rock Wall 7
+	Rough Terrain 8
+	Low Bar 9
+<Teleop>
+High Goals : 10
+Low Goals : 13
+Defenses Crossed - 
+	Portcullis : -1
+	Cheval de Frise : 2
+	Moat : 0
+	Ramparts : -1
+	DrawBridge : -1
+	Sally Port : 1
+	Rock Wall : -1
+	Rough Terrain : 2
+	Low Bar : 1
+Scale / Climb / None (choose 1) : 2
+----------
+Team Number : 5089
+Auton (2 digits) : 39
+	<for tens digit, refer to below>
+	Nothing happens 0
+	Reach Defense 1
+	Cross Defense 2
+	Scores Low Goal 3
+	Scores High Goal 4
+	<for ones digit, refer to below>
+	No Crossing 0
+	Portcullis 1
+	Cheval De Frise 2
+	Moat 3
+	Ramparts 4
+	Drawbridge 5
+	Sally Port 6
+	Rock Wall 7
+	Rough Terrain 8
+	Low Bar 9
+<Teleop>
+High Goals : 1
+Low Goals : 9
+Defenses Crossed - 
+	Portcullis : 2
+	Cheval de Frise : -1
+	Moat : -1
+	Ramparts : 2
+	Drawbridge : 2
+	Sally Port : -1
+	Rock Wall : 0
+	Rough Terrain : -1
+	Low Bar : 0
+Scale / Climb / None (choose 1) : 0
+----------
+Team Number : 2922
+Auton (2 digits) : 48
+	<for tens digit, refer to below>
+	Nothing happens 0
+	Reach Defense 1
+	Cross Defense 2
+	Scores Low Goal 3
+	Scores High Goal 4
+	<for ones digit, refer to below>
+	No Crossing 0
+	Portcullis 1
+	Cheval De Frise 2
+	Moat 3
+	Ramparts 4
+	Drawbridge 5
+	Sally Port 6
+	Rock Wall 7
+	Rough Terrain 8
+	Low Bar 9
+<Teleop>
+High Goals : 14
+Low Goals : 12
+Defenses Crossed - 
+	Portcullis : -1
+	Cheval de Frise : 1
+	Moat : 1
+	Ramparts : -1
+	DrawBridge : -1
+	Sally Port : 1
+	Rock Wall : 2
+	Rough Terrain : -1
+	Low Bar : 2
+Scale / Climb / None (choose 1) : 2
+----------
+Team Number : 4957
+Auton (2 digits) : 46
+	<for tens digit, refer to below>
+	Nothing happens 0
+	Reach Defense 1
+	Cross Defense 2
+	Scores Low Goal 3
+	Scores High Goal 4
+	<for ones digit, refer to below>
+	No Crossing 0
+	Portcullis 1
+	Cheval De Frise 2
+	Moat 3
+	Ramparts 4
+	Drawbridge 5
+	Sally Port 6
+	Rock Wall 7
+	Rough Terrain 8
+	Low Bar 9
+<Teleop>
+High Goals : 2
+Low Goals : 11
+Defenses Crossed - 
+	Portcullis : 1
+	Cheval de Frise : -1
+	Moat : 1
+	Ramparts : -1
+	DrawBridge : -1
+	Sally Port : 1
+	Rock Wall : 2
+	Rough Terrain : -1
+	Low Bar : 2
+Scale / Climb / None (choose 1) : 2
