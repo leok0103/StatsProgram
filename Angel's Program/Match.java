@@ -10,7 +10,7 @@ public class Match {
 		teamList = new ArrayList<ArrayList>();
 	}
 
-	public Match(String filepath) {
+	public Match(String filepath) { // a match
 		File file = new File(filepath);
 		teamList = new ArrayList<ArrayList>();
 
