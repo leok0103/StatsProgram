@@ -2,24 +2,39 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Match_Generator {
 
 	public static void main(String[] args) {
 		try {
-			String matchFile = "test.txt";
+			String matchFile = "testo.txt";
 			File file = new File(matchFile);
-			
+
 			file.delete();
 
 			if (!file.exists()) {
 				file.createNewFile();
 			}
 
+			Schedule sch = new Schedule("Schedule.txt");
+			File main = new File("main.txt");
+			Scanner sca = new Scanner(main);
+			sca.nextLine();
+			int temp = Integer.parseInt(sca.nextLine());
+			ArrayList<String> arr = sch.getMatch(temp);
+
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
+
+			int area1 = (int) (Math.random() * 2);
+			int area2 = (int) (Math.random() * 2);
+			int area3 = (int) (Math.random() * 2);
+			int area4 = (int) (Math.random() * 2);
+
 			for (int i = 0; i < 6; i++) {
-				bw.write("Team Number : " + (int) (Math.random() * 40));
+				bw.write("Team Number : " + arr.get(i));
 				bw.newLine();
 				bw.write("Auton (2 digits) : " + (int) (Math.random() * 50));
 				bw.newLine();
@@ -65,8 +80,8 @@ public class Match_Generator {
 				bw.newLine();
 				bw.write("Defenses Crossed - ");
 				bw.newLine();
-				int j = (int) (Math.random() * 2);
-				if (j == 0) {
+
+				if (area1 == 0) {
 					bw.write("\tPortcullis : " + (int) (Math.random() * 3));
 					bw.newLine();
 					bw.write("\tCheval de Frise : -1");
@@ -77,8 +92,8 @@ public class Match_Generator {
 					bw.write("\tCheval de Frise : " + (int) (Math.random() * 3));
 					bw.newLine();
 				}
-				j = (int) (Math.random() * 2);
-				if (j == 0) {
+
+				if (area2 == 0) {
 					bw.write("\tMoat : " + (int) (Math.random() * 3));
 					bw.newLine();
 					bw.write("\tRamparts : -1");
@@ -89,8 +104,8 @@ public class Match_Generator {
 					bw.write("\tRamparts : " + (int) (Math.random() * 3));
 					bw.newLine();
 				}
-				j = (int) (Math.random() * 2);
-				if (j == 0) {
+
+				if (area3 == 0) {
 					bw.write("\tDrawbridge : " + (int) (Math.random() * 3));
 					bw.newLine();
 					bw.write("\tSally Port : -1");
@@ -101,8 +116,8 @@ public class Match_Generator {
 					bw.write("\tSally Port : " + (int) (Math.random() * 3));
 					bw.newLine();
 				}
-				j = (int) (Math.random() * 2);
-				if (j == 0) {
+
+				if (area4 == 0) {
 					bw.write("\tRock Wall : " + (int) (Math.random() * 3));
 					bw.newLine();
 					bw.write("\tRough Terrain : -1");
@@ -113,10 +128,11 @@ public class Match_Generator {
 					bw.write("\tRough Terrain : " + (int) (Math.random() * 3));
 					bw.newLine();
 				}
-				bw.write("\tLow Bar : " + (int)(Math.random()*3));
+				bw.write("\tLow Bar : " + (int) (Math.random() * 3));
 				bw.newLine();
-				bw.write("Scale / Climb / None (choose 1) : " + (int)(Math.random()*3));
-				if(i!=5) {
+				bw.write("Scale / Climb / None (choose 1) : "
+						+ (int) (Math.random() * 3));
+				if (i != 5) {
 					bw.newLine();
 					bw.write("----------");
 					bw.newLine();
@@ -124,6 +140,11 @@ public class Match_Generator {
 			}
 
 			bw.close();
+			sca.close();
+			
+			if(sch.getMax() < temp) {
+				file.delete();
+			}
 		} catch (IOException e) {
 
 		}
