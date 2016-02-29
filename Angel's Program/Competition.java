@@ -1,21 +1,16 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 public class Competition extends JFrame implements MouseListener {
+
 	private static final long serialVersionUID = 0;
 
 	private final String matchFile = "testo.txt";
@@ -270,8 +266,6 @@ public class Competition extends JFrame implements MouseListener {
 						.showInputDialog("Enter Match # to see what happened : ");
 
 				JFrame temp = new JFrame("Match " + fn + " Status");
-				temp.setVisible(true);
-				temp.setSize(900, 900);
 
 				String str = "<html>" + print6teams(Integer.parseInt(fn));
 				while (str.indexOf("\n") >= 0) {
@@ -282,12 +276,14 @@ public class Competition extends JFrame implements MouseListener {
 
 				JLabel lab = new JLabel(str, SwingConstants.CENTER);
 				lab.setFont(new Font("Courier", Font.PLAIN, 20));
-				lab.setAlignmentX(0);
-				lab.setAlignmentY(0);
+				
+				JScrollPane pan = new JScrollPane(lab);
+				pan.getVerticalScrollBar().setUnitIncrement(16);
 
-				temp.getContentPane().add(new JScrollPane(lab));
-				temp.add(lab);
+				temp.getContentPane().add(pan);
 
+				temp.setVisible(true);
+				temp.setSize(900, 900);
 			} else if (e.getX() > 150 && e.getX() < 245) { // Team Search
 				String fn = JOptionPane.showInputDialog("Enter Team # : ");
 				if (fn != null) {
