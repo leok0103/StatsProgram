@@ -23,7 +23,7 @@ public class Match_Generator {
 			Scanner sca = new Scanner(main);
 			sca.nextLine();
 			int temp = Integer.parseInt(sca.nextLine());
-			ArrayList<String> arr = sch.getMatch(temp);
+			String[] arr = sch.getMatch(temp);
 
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -34,7 +34,7 @@ public class Match_Generator {
 			int area4 = (int) (Math.random() * 2);
 
 			for (int i = 0; i < 6; i++) {
-				bw.write("Team Number : " + arr.get(i));
+				bw.write("Team Number : " + arr[i]);
 				bw.newLine();
 				bw.write("Auton (2 digits) : " + (int) (Math.random() * 50));
 				bw.newLine();

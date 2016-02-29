@@ -109,12 +109,12 @@ public class Match {
 		return teamList;
 	}
 
-	public void printMatch() {
+	public String printMatch() {
+		String ans = "";
 		for (int i = 0; i < 6; i++) {
 			Team temp = new Team((String) teamList.get(i).get(0));
 			temp.updateInfo(teamList.get(i));
 
-			String ans = "";
 			ans += "Team : " + temp.getName();
 			ans += "\nAuton Points : " + temp.getAvgAuton().substring(0, 3);
 			ans += "\nDefense Crossed : " + temp.getAutonDef();
@@ -131,7 +131,8 @@ public class Match {
 			ans += "\nLow Bar : " + temp.getLowB().substring(0, 3);
 			ans += "\nScaling : " + temp.getScaling().substring(0, 3) + "\n";
 
-			System.out.println(ans);
+			ans += "\n";
 		}
+		return ans;
 	}
 }

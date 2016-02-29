@@ -127,7 +127,7 @@ public class Team {
 
 		inpu = inp.get(2).split(" ");
 		for (int i = 0; i < inpu.length; i++) {
-			if (inpu[i].equals(""))
+			if (inpu[i].equals("") || inp.get(2).equals("CAN'T CROSS ANY DEFENSE"))
 				break;
 			autonDef.add(inpu[i]);
 		}
@@ -388,51 +388,60 @@ public class Team {
 	}
 
 	public String getPC() {
-		if(PortC.getAvg().equals("N/A")) return PortC.getAvg();
+		if (PortC.getAvg().equals("N/A"))
+			return PortC.getAvg();
 		return PortC.getAvg() + String.format(" (%s)", PortC.calcStdDev());
 	}
 
 	public String getCheval() {
-		if(Cheval.getAvg().equals("N/A")) return Cheval.getAvg();
+		if (Cheval.getAvg().equals("N/A"))
+			return Cheval.getAvg();
 		return Cheval.getAvg() + String.format(" (%s)", Cheval.calcStdDev());
 	}
 
 	public String getMoat() {
-		if(Moat.getAvg().equals("N/A")) return Moat.getAvg();
+		if (Moat.getAvg().equals("N/A"))
+			return Moat.getAvg();
 		return Moat.getAvg() + String.format(" (%s)", Moat.calcStdDev());
 	}
 
 	public String getRampart() {
-		if(Rampart.getAvg().equals("N/A")) return Rampart.getAvg();
+		if (Rampart.getAvg().equals("N/A"))
+			return Rampart.getAvg();
 		return Rampart.getAvg() + String.format(" (%s)", Rampart.calcStdDev());
 	}
 
 	public String getDB() {
-		if(Drawbridge.getAvg().equals("N/A")) return Drawbridge.getAvg();
+		if (Drawbridge.getAvg().equals("N/A"))
+			return Drawbridge.getAvg();
 		return Drawbridge.getAvg()
 				+ String.format(" (%s)", Drawbridge.calcStdDev());
 	}
 
 	public String getPortS() {
-		if(SallyPort.getAvg().equals("N/A")) return SallyPort.getAvg();
+		if (SallyPort.getAvg().equals("N/A"))
+			return SallyPort.getAvg();
 		return SallyPort.getAvg()
 				+ String.format(" (%s)", SallyPort.calcStdDev());
 	}
 
 	public String getRock() {
-		if(RockWall.getAvg().equals("N/A")) return RockWall.getAvg();
+		if (RockWall.getAvg().equals("N/A"))
+			return RockWall.getAvg();
 		return RockWall.getAvg()
 				+ String.format(" (%s)", RockWall.calcStdDev());
 	}
 
 	public String getRough() {
-		if(RoughTerrain.getAvg().equals("N/A")) return RoughTerrain.getAvg();
+		if (RoughTerrain.getAvg().equals("N/A"))
+			return RoughTerrain.getAvg();
 		return RoughTerrain.getAvg()
 				+ String.format(" (%s)", RoughTerrain.calcStdDev());
 	}
 
 	public String getLowB() {
-		if(LowBar.getAvg().equals("N/A")) return LowBar.getAvg();
+		if (LowBar.getAvg().equals("N/A"))
+			return LowBar.getAvg();
 		return LowBar.getAvg() + String.format(" (%s)", LowBar.calcStdDev());
 	}
 
@@ -473,7 +482,7 @@ public class Team {
 				+ "\nRock Wall : " + getRock() + "\nRough Terrain : "
 				+ getRough() + "\nLow Bar : " + getLowB() + "\nScaling : "
 				+ getScaling() + "\nDefenses crossed during the autonomous : "
-				+ getAutonDef() + "\n" + sortOutWorst();
+				+ getAutonDef();
 	}
 
 	public String sortOutWorst() {
@@ -526,7 +535,7 @@ public class Team {
 			unknown.add(LowBar);
 
 		for (int i = 0; i < known.size() - 1; i++) {
-			for (int j = i+1; j < known.size(); j++) {
+			for (int j = i + 1; j < known.size(); j++) {
 				Defense temp = known.get(i);
 				if (Double.parseDouble(temp.getAvg()) > Double
 						.parseDouble(known.get(j).getAvg())) {
@@ -576,6 +585,10 @@ public class Team {
 
 	public int getTotal() {
 		return (totalHG * 5) + (totalLG * 2) + totalAuton + totalScaling();
+	}
+
+	public double getAvgTotal() {
+		return (double) getTotal() / listHG.size();
 	}
 
 	public String toString() {

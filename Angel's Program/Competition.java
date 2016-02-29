@@ -1,9 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +19,10 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 public class Competition extends JFrame implements MouseListener {
 	private static final long serialVersionUID = 0;
@@ -35,7 +40,7 @@ public class Competition extends JFrame implements MouseListener {
 
 	public Competition() {
 		setTitle("RAID ZERO");
-		setSize(2048, 1350);
+		setSize(1018, 705);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(new FlowLayout());
@@ -132,139 +137,206 @@ public class Competition extends JFrame implements MouseListener {
 
 		sch = new Schedule(scheduleFile);
 
-		/*setLayout(new BorderLayout());
-
-		JLabel background = new JLabel(new ImageIcon("Analysis_Program.png"));
-
-		add(background);
-
-		background.setLayout(new FlowLayout());
-
-		JLabel l1 = new JLabel("Here is a button");
-		JButton b1 = new JButton("I am a button");
-
-		background.add(l1);
-		background.add(b1);*/
-		
-		setLayout(new BorderLayout());
-		setContentPane(new JLabel(new ImageIcon("Analysis_Program.png")));
-		setLayout(new FlowLayout());
-		JLabel l1=new JLabel("Here is a button");
-		JButton b1=new JButton("I am a button");
-		add(l1);
-		add(b1);
-		// Just for refresh :) Not optional!
-		setSize(399,399);
-		setSize(400,400);
-		
 		try {
-		setContentPane(new JLabel (new ImageIcon(ImageIO.read(new File("Analysis_Program.png")))));
+			setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
+					"Analysis_Program.png")))));
 		} catch (IOException e) {
-			
+
 		}
+
+		BackgroundPanel pan = new BackgroundPanel();
+
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+
+		pan.add(panel);
+
+		add(pan);
+		setVisible(true);
 
 	}
 
 	public void paint(Graphics g) {
-		/*if (updated) {
-			ImageIcon ii = new ImageIcon(
-					"C:\\Users\\17112499\\Analysis_Program.png");
-			JLabel lable = new JLabel(ii);
-			getContentPane().add(lable);
-			add(lable);
-			updated = false;
-		}*/
-		try {
-			TimeUnit.MILLISECONDS.sleep(50);
-		} catch (InterruptedException e) {
-		}
-		repaint();
 	}
 
 	public ArrayList<Team> getTeams() {
 		return listTeams;
 	}
 
-	public void print6teams(int n) {
+	public String print6teams(int n) {
 		String temPath = "Matches\\Match_" + n + ".txt";
 		Match temp = new Match(temPath);
-		temp.printMatch();
+		return temp.printMatch();
 	}
 
-	public void print6teams_Defenses(int n) {
-		ArrayList<String> ts = sch.getMatch(n);
-		for (int i = 0; i < listTeams.size(); i++) {
-			for (int j = 0; j < ts.size(); j++) {
-				if (ts.get(j).equals(listTeams.get(i).getName())) {
-					System.out.println("Team Name : "
-							+ listTeams.get(i).getName());
-					System.out.println(listTeams.get(i).sortOutWorst() + "\n");
+	public String print6teams_Defenses(int n) {
+		String ans = "";
+		String[] ts = sch.getMatch(n);
+
+		for (int i = 0; i < ts.length; i++) {
+			for (int j = 0; j < listTeams.size(); j++) {
+				if (ts[i].equals(listTeams.get(j).getName())) {
+					ans += "Team " + listTeams.get(j).getName() + " :: \n"
+							+ listTeams.get(j).sortOutWorst() + "\n\n";
 				}
 			}
 		}
+		return ans;
+	}
+
+	public String print6teams_Defenses2(int n) {
+		String ans = "";
+		String[] ts = sch.getMatch(n);
+		Team[] tes = new Team[6];
+
+		for (int i = 0; i < ts.length; i++) {
+			for (int j = 0; j < listTeams.size(); j++) {
+				if (ts[i].equals(listTeams.get(j).getName())) {
+					tes[i] = listTeams.get(j);
+					System.out.println(tes[i].getName() + " "
+							+ tes[i].getAvgTotal());
+				}
+			}
+		}
+
+		for (int a = 0; a < tes.length - 1; a++) {
+			for (int b = 0; b < tes.length; b++) {
+				if (tes[a].getAvgTotal() > tes[b].getAvgTotal()) {
+					Team temp = tes[a];
+					tes[a] = tes[b];
+					tes[b] = temp;
+				}
+			}
+		}
+
+		for (int x = 0; x < tes.length; x++) {
+			ans += tes[x].getName() + " ";
+		}
+		return ans;
+
 	}
 
 	public static void main(String[] args) throws IOException {
 		JFrame idk = new Competition();
-		/*String path = "Analysis_Program.png";
-		File fi = new File(path);
-		BufferedImage image = ImageIO.read(fi);
-		JLabel label = new JLabel(new ImageIcon(image));
-		idk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		idk.getContentPane().add(label);
-		idk.setSize(1018, 705);
-		idk.setLocation(200, 200);
-		idk.setVisible(true);*/
+
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		if (e.getX() > 1600) {
-			Pre_Match pm = new Pre_Match();
-			String fn = JOptionPane.showInputDialog("Enter Team # : ");
-			System.out.println(pm.getClaimedDefenses(fn));
-		} else if (e.getX() > 1200) {
-			String fn = JOptionPane
-					.showInputDialog("Enter Match # to see their defense_crossing status : ");
-			print6teams_Defenses(Integer.parseInt(fn));
-		} else if (e.getX() > 800) {
-			String fn = JOptionPane
-					.showInputDialog("Enter Match # to see what happened : ");
-			print6teams(Integer.parseInt(fn));
-		} else if (e.getX() > 400) {
-			String fn = JOptionPane.showInputDialog("Enter Team # : ");
-			for (int i = 0; i < listTeams.size(); i++) {
-				if (listTeams.get(i).getName().equals(fn)) {
+		if (e.getY() < 655 && e.getY() > 565) {
+			if (e.getX() > 370 && e.getX() < 465) { // Pre_Match
+				Pre_Match pm = new Pre_Match();
+				String fn = JOptionPane.showInputDialog("Enter Team # : ");
+				if (fn != null) {
+					JFrame temp = new JFrame("Pre_Match Defense Info on Team "
+							+ fn);
+					temp.setVisible(true);
+					temp.setSize(900, 900);
 
-					System.out.print(listTeams.get(i).avgs());
-					/*
-					 * JFrame ha =
-					 * 
-					 * new JFrame();
-					 * ha.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					 * ha.setLayout(new FlowLayout());
-					 * lab.setText(listTeams.get(i).avgs());
-					 * getContentPane().add(lab);
-					 */
+					String str = pm.getClaimedDefenses(fn);
 
-					getContentPane().setLayout(new FlowLayout());
-					JLabel label = new JLabel("Text-Only Label");
-					label.setFont(new Font("Serif", Font.PLAIN, 36));
-					getContentPane().add(label);
-					setVisible(true);
+					JLabel lab = new JLabel(str, SwingConstants.CENTER);
+					lab.setFont(new Font("Courier", Font.PLAIN, 20));
+					lab.setAlignmentX(0);
+					lab.setAlignmentY(0);
 
-					break;
+					temp.add(lab);
 				}
-				if (i == listTeams.size() - 1) {
-					System.out.println("TEAM NOT FOUND");
-					break;
+			} else if (e.getX() > 255 && e.getX() < 355) { // Match_Defenses
+				String fn = JOptionPane
+						.showInputDialog("Enter Match # to see their defense_crossing status : ");
+				if (fn != null) {
+					JFrame temp = new JFrame("Team " + fn + " ");
+					temp.setVisible(true);
+					temp.setSize(900, 900);
+
+					String str = "<html>"
+							+ print6teams_Defenses(Integer.parseInt(fn)) + "\n"
+							+ print6teams_Defenses2(Integer.parseInt(fn));
+					while (str.indexOf("\n") >= 0) {
+						str = str.substring(0, str.indexOf("\n")) + "<br/>"
+								+ str.substring(str.indexOf("\n") + 1);
+					}
+					str += "</html><div style = 'text-align: center;'>";
+
+					JLabel lab = new JLabel(str, SwingConstants.CENTER);
+					lab.setFont(new Font("Courier", Font.PLAIN, 20));
+					lab.setAlignmentX(0);
+					lab.setAlignmentY(0);
+
+					temp.add(lab);
 				}
+			} else if (e.getX() > 475 && e.getX() < 575) { // Match_Search
+				String fn = JOptionPane
+						.showInputDialog("Enter Match # to see what happened : ");
+
+				JFrame temp = new JFrame("Match " + fn + " Status");
+				temp.setVisible(true);
+				temp.setSize(900, 900);
+
+				String str = "<html>" + print6teams(Integer.parseInt(fn));
+				while (str.indexOf("\n") >= 0) {
+					str = str.substring(0, str.indexOf("\n")) + "<br/>"
+							+ str.substring(str.indexOf("\n") + 1);
+				}
+				str += "</html>";
+
+				JLabel lab = new JLabel(str, SwingConstants.CENTER);
+				lab.setFont(new Font("Courier", Font.PLAIN, 20));
+				lab.setAlignmentX(0);
+				lab.setAlignmentY(0);
+
+				temp.getContentPane().add(new JScrollPane(lab));
+				temp.add(lab);
+
+			} else if (e.getX() > 150 && e.getX() < 245) { // Team Search
+				String fn = JOptionPane.showInputDialog("Enter Team # : ");
+				if (fn != null) {
+					for (int i = 0; i < listTeams.size(); i++) {
+						if (listTeams.get(i).getName().equals(fn)) {
+
+							JFrame temp = new JFrame("Team " + fn + " Status");
+							temp.setVisible(true);
+							temp.setSize(900, 900);
+
+							String str = "<html>" + listTeams.get(i).avgs();
+							while (str.indexOf("\n") >= 0) {
+								str = str.substring(0, str.indexOf("\n"))
+										+ "<br/>"
+										+ str.substring(str.indexOf("\n") + 1);
+							}
+							str += "</html><div style = 'text-align: center;'>";
+
+							JLabel lab = new JLabel(str, SwingConstants.CENTER);
+							lab.setFont(new Font("Courier", Font.PLAIN, 20));
+							lab.setAlignmentX(0);
+							lab.setAlignmentY(0);
+
+							temp.add(lab);
+							break;
+						}
+						if (i == listTeams.size() - 1) {
+							JFrame temp = new JFrame("Team Search");
+							temp.setVisible(true);
+							temp.setSize(900, 900);
+
+							JLabel lab = new JLabel("TEAM NOT FOUND",
+									JLabel.CENTER);
+							lab.setFont(new Font("Courier", Font.PLAIN, 30));
+							lab.setAlignmentX(0);
+							lab.setAlignmentY(0);
+
+							temp.add(lab);
+							break;
+						}
+					}
+				}
+			} else if (e.getX() > 35 && e.getX() < 135) { // Team Data
+				Table gui = new Table(getTeams());
+				gui.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				gui.setSize(1800, 1000);
+				gui.setVisible(true);
+				gui.setTitle("Team Data");
 			}
-		} else if (e.getX() > 0) {
-			Table gui = new Table(getTeams());
-			gui.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			gui.setSize(1800, 1000);
-			gui.setVisible(true);
-			gui.setTitle("Team Data");
 		}
 	}
 
