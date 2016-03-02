@@ -546,13 +546,13 @@ public class Team {
 			}
 		}
 
-		String ouput = "Ones they can't cross (in order) : ";
+		String ouput = "Ones they can't cross (in order of worst to best) : \n";
 		for (int k = 0; k < known.size(); k++) {
 			ouput += known.get(k).getName();
 			if (k != known.size() - 1)
 				ouput += ", ";
 		}
-		ouput += "\nOnes they haven't crossed (were not available during match) : ";
+		ouput += "\nOnes they haven't crossed (were not available during match) : \n";
 		for (int l = 0; l < unknown.size(); l++) {
 			ouput += unknown.get(l).getName();
 			if (l != unknown.size() - 1)

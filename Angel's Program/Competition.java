@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -16,14 +17,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 public class Competition extends JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 0;
 
-	private final String matchFile = "testo.txt";
+	private final String matchFile = "Stats_Program.txt";
 	private final String mainFile = "main.txt";
 	private final String scheduleFile = "Schedule.txt";
 
@@ -181,7 +184,7 @@ public class Competition extends JFrame implements MouseListener {
 	}
 
 	public String print6teams_Defenses2(int n) {
-		String ans = "";
+		String ans = "Team Rankings (Best to Worst, Total) :: ";
 		String[] ts = sch.getMatch(n);
 		Team[] tes = new Team[6];
 
@@ -189,8 +192,6 @@ public class Competition extends JFrame implements MouseListener {
 			for (int j = 0; j < listTeams.size(); j++) {
 				if (ts[i].equals(listTeams.get(j).getName())) {
 					tes[i] = listTeams.get(j);
-					System.out.println(tes[i].getName() + " "
-							+ tes[i].getAvgTotal());
 				}
 			}
 		}
@@ -226,7 +227,7 @@ public class Competition extends JFrame implements MouseListener {
 					JFrame temp = new JFrame("Pre_Match Defense Info on Team "
 							+ fn);
 					temp.setVisible(true);
-					temp.setSize(900, 900);
+					temp.setSize(400, 400);
 
 					String str = pm.getClaimedDefenses(fn);
 
@@ -237,29 +238,34 @@ public class Competition extends JFrame implements MouseListener {
 
 					temp.add(lab);
 				}
+				
 			} else if (e.getX() > 255 && e.getX() < 355) { // Match_Defenses
 				String fn = JOptionPane
 						.showInputDialog("Enter Match # to see their defense_crossing status : ");
 				if (fn != null) {
 					JFrame temp = new JFrame("Team " + fn + " ");
+
+					JTextArea message = new JTextArea(
+							print6teams_Defenses(Integer.parseInt(fn))
+									+ "\n"
+									+ print6teams_Defenses2(Integer
+											.parseInt(fn)));
+
+					message.setFont(new Font("Courier", Font.PLAIN, 20));
+					message.setWrapStyleWord(true);
+					message.setLineWrap(true);
+					message.setEditable(false);
+					message.setFocusable(false);
+					message.setOpaque(false);
+
+					JScrollPane scrollPane = new JScrollPane(message,
+							ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+							ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+					temp.add(scrollPane);
+					temp.setSize(800, 900);
 					temp.setVisible(true);
-					temp.setSize(900, 900);
 
-					String str = "<html>"
-							+ print6teams_Defenses(Integer.parseInt(fn)) + "\n"
-							+ print6teams_Defenses2(Integer.parseInt(fn));
-					while (str.indexOf("\n") >= 0) {
-						str = str.substring(0, str.indexOf("\n")) + "<br/>"
-								+ str.substring(str.indexOf("\n") + 1);
-					}
-					str += "</html><div style = 'text-align: center;'>";
-
-					JLabel lab = new JLabel(str, SwingConstants.CENTER);
-					lab.setFont(new Font("Courier", Font.PLAIN, 20));
-					lab.setAlignmentX(0);
-					lab.setAlignmentY(0);
-
-					temp.add(lab);
 				}
 			} else if (e.getX() > 475 && e.getX() < 575) { // Match_Search
 				String fn = JOptionPane
@@ -276,14 +282,16 @@ public class Competition extends JFrame implements MouseListener {
 
 				JLabel lab = new JLabel(str, SwingConstants.CENTER);
 				lab.setFont(new Font("Courier", Font.PLAIN, 20));
-				
+				lab.setAlignmentX(0);
+				lab.setAlignmentY(0);
+
 				JScrollPane pan = new JScrollPane(lab);
 				pan.getVerticalScrollBar().setUnitIncrement(16);
 
 				temp.getContentPane().add(pan);
 
 				temp.setVisible(true);
-				temp.setSize(900, 900);
+				temp.setSize(550, 900);
 			} else if (e.getX() > 150 && e.getX() < 245) { // Team Search
 				String fn = JOptionPane.showInputDialog("Enter Team # : ");
 				if (fn != null) {
@@ -292,7 +300,7 @@ public class Competition extends JFrame implements MouseListener {
 
 							JFrame temp = new JFrame("Team " + fn + " Status");
 							temp.setVisible(true);
-							temp.setSize(900, 900);
+							temp.setSize(600, 600);
 
 							String str = "<html>" + listTeams.get(i).avgs();
 							while (str.indexOf("\n") >= 0) {
@@ -313,7 +321,7 @@ public class Competition extends JFrame implements MouseListener {
 						if (i == listTeams.size() - 1) {
 							JFrame temp = new JFrame("Team Search");
 							temp.setVisible(true);
-							temp.setSize(900, 900);
+							temp.setSize(700, 700);
 
 							JLabel lab = new JLabel("TEAM NOT FOUND",
 									JLabel.CENTER);
