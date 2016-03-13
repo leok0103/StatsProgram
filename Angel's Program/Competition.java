@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -26,7 +25,7 @@ public class Competition extends JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 0;
 
-	private final String matchFile = "Stats_Program.txt";
+	private final String matchFile = "Scouts_File.txt";
 	private final String mainFile = "main.txt";
 	private final String scheduleFile = "Schedule.txt";
 
